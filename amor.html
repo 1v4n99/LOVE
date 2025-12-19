@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>AMOR 💕</title>
+</head>
+<body>
+
+    <!-- HEADER: tarjeta principal -->
+    <header class="hero">
+        <div class="card" role="region" aria-label="Mensaje principal">
+            <span class="heart">❤</span>
+            <h1>Para ti, Steff</h1>
+            <p class="lead">Cada latido me recuerda que eres lo más lindo que me pasó.</p>
+
+            <div class="card-actions" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center">
+                <a class="btn" href="#">Ver sorpresa</a>
+                <a class="btn" href="#" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Carta</a>
+            </div>
+
+            <div class="controls" style="position:absolute;right:18px;top:18px;display:flex;gap:8px;align-items:center">
+                <button id="musicToggle" title="Música" aria-label="Música">🎵</button>
+                <button id="heartbeatToggle" title="Latidos" aria-label="Latidos">💕</button>
+                <button id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">🌓</button>
+            </div>
+
+            <div class="sparkles" aria-hidden="true"></div>
+        </div>
+    </header>
+
+    <!-- ESCENA: árboles + capa de hojas -->
+    <div class="scene" aria-hidden="false">
+        <div class="ground"></div>
+
+        <div class="trees" role="img" aria-label="Árboles decorativos">
+            <!-- Árbol izquierda -->
+            <figure class="tree tree-left" data-ornaments="6">
+                <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="tree-svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="foliageGrad" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#3a6b3a"/>
+                            <stop offset="1" stop-color="#1f3f2b"/>
+                        </linearGradient>
+                        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="2" result="b"/>
+                            <feBlend in="SourceGraphic" in2="b"/>
+                        </filter>
+                    </defs>
+                    <rect x="88" y="160" width="24" height="80" rx="6" fill="#7a4b2a"/>
+                    <ellipse class="foliage large" cx="100" cy="110" rx="80" ry="70" fill="url(#foliageGrad)" filter="url(#soft)"/>
+                    <ellipse class="foliage mid" cx="100" cy="70" rx="62" ry="56" fill="#2f5b2f" opacity="0.95"/>
+                    <ellipse class="foliage top" cx="100" cy="34" rx="46" ry="42" fill="#3f6b3f" opacity="0.98"/>
+                </svg>
+                <div class="ornaments">
+                    <span class="ornament" data-color="#ff6b9a"></span>
+                    <span class="ornament" data-color="#ffd1dc"></span>
+                    <span class="ornament" data-color="#ffd166"></span>
+                    <span class="ornament" data-color="#8fe3ff"></span>
+                    <span class="ornament" data-color="#ffd1dc"></span>
+                    <span class="ornament" data-color="#ff6b9a"></span>
+                </div>
+            </figure>
+
+            <!-- Árbol derecha -->
+            <figure class="tree tree-right" data-ornaments="5">
+                <svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" class="tree-svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="foliageGrad2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#3a6b3a"/>
+                            <stop offset="1" stop-color="#1f3f2b"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="88" y="155" width="24" height="85" rx="6" fill="#7a4b2a"/>
+                    <ellipse class="foliage large" cx="100" cy="105" rx="76" ry="68" fill="url(#foliageGrad2)"/>
+                    <ellipse class="foliage mid" cx="100" cy="66" rx="58" ry="52" fill="#2f5b2f"/>
+                    <ellipse class="foliage top" cx="100" cy="30" rx="40" ry="36" fill="#3f6b3f"/>
+                </svg>
+                <div class="ornaments">
+                    <span class="ornament" data-color="#ffd1dc"></span>
+                    <span class="ornament" data-color="#ff6b9a"></span>
+                    <span class="ornament" data-color="#8fe3ff"></span>
+                    <span class="ornament" data-color="#ffd166"></span>
+                    <span class="ornament" data-color="#ff6b9a"></span>
+                </div>
+            </figure>
+        </div>
+
+        <div id="leaf-layer" aria-hidden="true" data-leaf-count="28"></div>
+    </div>
+
+    <!-- MENSAJE LARGO (cartitas) -->
+    <main>
+            <!-- CARRUSEL DE RECUERDOS (optimizado, lazy-load) -->
+            <section id="memories" class="memories-carousel" aria-label="Recuerdos - carrusel">
+                <div class="carousel-viewport">
+                    <button class="carousel-btn prev" aria-label="Anterior">◀</button>
+                    <div class="carousel-track" role="list">
+                            <div class="carousel-item" role="listitem" data-src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=60&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=1" data-time="2022-06-12 18:20" data-place="Parque Central"></div>
+                            <div class="carousel-item" role="listitem" data-src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200&q=60&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=2" data-time="2021-12-24 20:10" data-place="Casa de la abuela"></div>
+                            <div class="carousel-item" role="listitem" data-src="https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?w=1200&q=60&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=3" data-time="2020-08-05 09:30" data-place="Playa"></div>
+                            <div class="carousel-item" role="listitem" data-src="https://images.unsplash.com/photo-1474073705359-95c3b2f0a3c0?w=1200&q=60&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=4" data-time="2019-11-02 14:45" data-place="Montaña"></div>
+                            <div class="carousel-item" role="listitem" data-src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1200&q=60&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=5" data-time="2018-02-14 08:00" data-place="Café favorito"></div>
+                            <div class="carousel-item" role="listitem" data-src="RECUERDOS/recuerdo1.webp" data-time="2023-05-01 19:00" data-place="Plaza Central"></div>
+                    </div>
+                    <button class="carousel-btn next" aria-label="Siguiente">▶</button>
+                </div>
+                <div class="carousel-controls">
+                    <button id="carouselPlay" class="btn small">▶ Reproducir</button>
+                </div>
+            </section>
+
+            <!-- separador visual entre carrusel y cartas -->
+            <div class="section-separator" aria-hidden="true">
+                <span class="sep-line"></span>
+                <span class="sep-text">Cartas & Recuerdos</span>
+                <span class="sep-line"></span>
+            </div>
+
+            <div class="message" aria-label="Cartas para TI, Steff">
+          <p class="message-item" data-letter="1">El amor es una fuerza poderosa que puede transformar vidas y unir corazones. Es un sentimiento profundo de afecto, cuidado y conexión hacia otra persona, un animal o incluso una idea o causa. El amor puede manifestarse de muchas formas, incluyendo el amor romántico, el amor familiar, la amistad y el amor propio.</p>
+          <p class="message-item" data-letter="2">Este sitio web es dedicado a expresar mi amor por ti, Steff. Cada palabra y cada imagen aquí presente es una muestra de lo especial que eres para mí.</p>
+          <p class="message-item" data-letter="3">Espero que este pequeño rincón de la web te recuerde siempre cuánto te amo, Steff, y lo agradecido que estoy por tenerte en mi vida.</p>
+          <p class="message-item" data-letter="4">Con todo mi amor,</p>
+          <p class="message-item" data-letter="5">Para ti , Steff 💕</p>
+      </div>
+    </main>
+
+    <!-- MODAL CARTA -->
+    <div class="letter-modal" id="letterModal" aria-hidden="true" role="dialog">
+        <div class="letter-container" tabindex="-1">
+            <button class="letter-close" aria-label="Cerrar carta">&times;</button>
+            <div class="letter-header">
+                <span class="letter-icon">💌</span>
+                <h2>Carta para ti mi amor, Steff 💕</h2>
+            </div>
+            <div class="letter-content" id="letterContent"></div>
+            <div class="letter-footer">
+                <p style="font-size:12px;color:rgba(255,255,255,0.5);margin:0">Haz clic fuera para cerrar</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas para confetti -->
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <!-- Contador de cartas (eliminado por rendimiento) -->
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <p>Hecho con <span class="heart-mini">❤</span> para ti, Steff</p>
+            <p class="footer-meta">Proyecto web interactivo • 2024</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL-TO-TOP BUTTON -->
+    <button id="scrollTop" class="scroll-to-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+    <!-- Scripts -->
+    <script src="performance.js" defer></script>
+    <script src="carousel.js" defer></script>
+    <script src="leaves.js" defer></script>
+    <script src="letters.js" defer></script>
+    <script src="audio.js" defer></script>
+    <script src="particles.js" defer></script>
+    <script src="tooltips.js" defer></script>
+    <script src="emoji-rain.js" defer></script>
+    <script src="cursor-effects.js" defer></script>
+    <script src="crush-mode.js" defer></script>
+    <script src="surprises.js" defer></script>
+    <script src="notifications.js" defer></script>
+    <script src="scroll-effects.js" defer></script>
+</body>
+</html>
